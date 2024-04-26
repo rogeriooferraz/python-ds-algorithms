@@ -1,8 +1,8 @@
-# python-ds-algorithms
+# Python DS-Algorithms
 
-This is a package of Data-Structure Algorithms in Python.
+This is a package of Data-Structure Algorithms (DSA) in Python.
 
-It supports the following data structures and related algorithms.
+It supports the following data-structures and related algorithms.
 
 - Queue: Dynamic and linked variants
 - Stack: Dynamic and linked variants
