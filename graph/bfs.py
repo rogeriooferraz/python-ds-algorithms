@@ -28,7 +28,7 @@ from graph import Graph
 
 def bfs_traversal(adj_list, orig_node):
     visited = [orig_node]
-    queue = deque([orig_node])
+    queue = deque(orig_node)
     while queue:
         inode = queue.popleft()
         for jnode in [ adj_v for adj_v in adj_list[inode] if adj_v not in visited ]:
@@ -38,9 +38,9 @@ def bfs_traversal(adj_list, orig_node):
 
 
 def bfs_path_list(adj_list, orig_vertex, dest_vertex):
-    queue = [(orig_vertex, [orig_vertex])]
+    queue = deque([(orig_vertex, [orig_vertex])])
     while queue:
-        (inode, path) = queue.pop(0)
+        (inode, path) = queue.popleft()
         for jnode in [ adj_v for adj_v in adj_list[inode] if adj_v not in path ]:
             if jnode == dest_vertex:
                 yield path + [jnode]
@@ -78,6 +78,7 @@ print("\t", g, "\n")
 # -----------------------------------------------------------------------------
 
 print("Traversal using Breadth-First Search (BFS):\n")
+
 print(f'using class method\t: {g.bfsTraversal("A")}')
 print("using function\t\t: %s\n" % bfs_traversal(graph_adj_list, "A"))
 
@@ -99,7 +100,10 @@ for path_list in bfs_path_list(graph_adj_list, 'A', 'F'):
 # Shortest Path
 # -----------------------------------------------------------------------------
 
-print("\nShortest Path: ", bfs_shortest_path(graph_adj_list, 'A', 'F'))
+print("\nShortest Path:\n")
+
+print(f"using class method\t: {g.bfsShortestPath('A', 'F')}")
+print(f"using function\t\t: {bfs_shortest_path(graph_adj_list, 'A', 'F')}")
 
 # -----------------------------------------------------------------------------
 # Output
@@ -123,4 +127,7 @@ print("\nShortest Path: ", bfs_shortest_path(graph_adj_list, 'A', 'F'))
 #          ['A', 'C', 'F']
 #          ['A', 'B', 'E', 'F']
 
-# Shortest Path:  ['A', 'C', 'F']
+# Shortest Path:
+#
+# using class method	: ['A', 'C', 'F']
+# using function		: ['A', 'C', 'F']

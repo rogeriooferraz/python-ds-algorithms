@@ -69,10 +69,5 @@ class Node:
     def __str__(self):
         return str(self.container)
 
-    def __eq__(self,other):
-        try:
-            return self.container == other.container
-        except AttributeError:
-            return False
-        except:
-            return NotImplemented
+    def __eq__(self, other):
+        return str(self) == str(other)
