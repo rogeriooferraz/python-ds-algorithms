@@ -19,18 +19,14 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.                                                            
+SOFTWARE.
 """
+
 
 from collections import deque
 
 
-class Queue(deque):
-
-    def __init__(self, data = None):
-        super().__init__()
-        if data:
-            self.append(data)
+class MyQueue(deque):
 
     def enqueue(self, data):
         self.append(data)

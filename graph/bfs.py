@@ -19,8 +19,9 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.                                                           
+SOFTWARE.
 """
+
 
 from collections import deque
 from graph import Graph
@@ -71,7 +72,7 @@ graph_adj_list = {
 }
 
 g = Graph(graph_adj_list)
-print("\t", g, "\n")
+print(f"\t{g}\n")
 
 # -----------------------------------------------------------------------------
 # Traversal using Breadth-First Search (BFS)
@@ -79,8 +80,8 @@ print("\t", g, "\n")
 
 print("Traversal using Breadth-First Search (BFS):\n")
 
-print(f'using class method\t: {g.bfsTraversal("A")}')
-print("using function\t\t: %s\n" % bfs_traversal(graph_adj_list, "A"))
+print(f"using class method\t: {g.bfsTraversal('A')}")
+print(f"using function\t\t: {bfs_traversal(graph_adj_list, 'A')}\n")
 
 # -----------------------------------------------------------------------------
 # Path List
@@ -90,11 +91,11 @@ print("Path List:\n")
 
 print("using class method:")
 for path_list in g.bfsPathList('A', 'F'):
-    print("\t", path_list)
+    print(f"\t{path_list}")
 
 print("\n" + "using function:")
 for path_list in bfs_path_list(graph_adj_list, 'A', 'F'):
-    print("\t", path_list)
+    print(f"\t{path_list}")
 
 # -----------------------------------------------------------------------------
 # Shortest Path
@@ -110,24 +111,24 @@ print(f"using function\t\t: {bfs_shortest_path(graph_adj_list, 'A', 'F')}")
 # -----------------------------------------------------------------------------
 
 # Graph:
-#          {'A': ['B', 'C'], 'B': ['A', 'D', 'E'], 'C': ['A', 'F'], 'D': ['B'], 'E': ['B', 'F'], 'F': ['C', 'E']} 
+#     {'A': ['B', 'C'], 'B': ['A', 'D', 'E'], 'C': ['A', 'F'], 'D': ['B'], 'E': ['B', 'F'], 'F': ['C', 'E']}
 
 # Traversal using Breadth-First Search (BFS):
 
-# using class method      : ['A', 'B', 'C', 'D', 'E', 'F']
-# using function          : ['A', 'B', 'C', 'D', 'E', 'F']
+# using class method    : ['A', 'B', 'C', 'D', 'E', 'F']
+# using function        : ['A', 'B', 'C', 'D', 'E', 'F']
 
 # Path List:
 
 # using class method:
-#          ['A', 'C', 'F']
-#          ['A', 'B', 'E', 'F']
+#     ['A', 'C', 'F']
+#     ['A', 'B', 'E', 'F']
 
 # using function:
-#          ['A', 'C', 'F']
-#          ['A', 'B', 'E', 'F']
+#     ['A', 'C', 'F']
+#     ['A', 'B', 'E', 'F']
 
 # Shortest Path:
-#
-# using class method	: ['A', 'C', 'F']
-# using function		: ['A', 'C', 'F']
+
+# using class method    : ['A', 'C', 'F']
+# using function        : ['A', 'C', 'F']

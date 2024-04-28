@@ -19,16 +19,15 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.                                                               
+SOFTWARE.
 """
 
-class Queue:
 
-    def __init__(self, data = None):
+class MyQueue:
+
+    def __init__(self):
         self.front = None
         self.rear = None
-        if data:
-            self.enqueue(data)
 
     def __bool__(self):
         return self.empty() == False
@@ -42,7 +41,7 @@ class Queue:
         return output
 
     def enqueue(self, data):
-        temp = Node(data)
+        temp = MyNode(data)
         if self.rear:
             self.rear.next = temp
         else:
@@ -55,13 +54,13 @@ class Queue:
             self.front = self.front.next
             if self.empty():
                 self.rear = None
-            return data           
+            return data
 
     def empty(self):
         return self.front == None
 
 
-class Node:
+class MyNode:
     def __init__(self, data):
         self.container = data
         self.next = None

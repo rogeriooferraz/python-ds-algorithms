@@ -19,22 +19,21 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.                                                           
+SOFTWARE.
 """
 
-class Stack:
+
+class MyStack:
 
     def __init__(self, data = None):
         self.top = None
-        if data:
-            self.push(data)
 
     def push(self, data):
-        temp = Node(data)
+        temp = MyNode(data)
         temp.next = self.top
         self.top = temp
 
-    def pop(self):      
+    def pop(self):
         if self.top:
             data = self.top.container
             self.top = self.top.next
@@ -48,14 +47,14 @@ class Stack:
 
     def __str__(self):
         output = ""
-        p = self.top 
+        p = self.top
         while p:
             output += str(p.container) + " "
-            p = p.next 
+            p = p.next
         return output
 
 
-class Node:
+class MyNode:
     def __init__(self, data):
         self.container = data
         self.next = None

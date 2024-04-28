@@ -19,11 +19,12 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.                                                              
+SOFTWARE.
 """
 
-from ds.linked.queue import Queue
-from ds.linked.stack import Stack
+
+from ds.linked.queue import MyQueue
+from ds.linked.stack import MyStack
 
 
 class Graph:
@@ -31,10 +32,10 @@ class Graph:
     def __init__(self, graph_adj_list = None):
         self.adj_list = {}
         if graph_adj_list:
-            for vertex in graph_adj_list:
-                self.addVertex(vertex)
-                for adj_vertex in graph_adj_list[vertex]:
-                    self.addEdge(vertex, adj_vertex)
+            for inode, adj_list in graph_adj_list.items():
+                self.addVertex(inode)
+                for jnode in adj_list:
+                    self.addEdge(inode, jnode)
 
     def __str__(self):
         return str(self.adj_list)
@@ -50,7 +51,8 @@ class Graph:
             self.adj_list[vertex] = []
 
     def bfsTraversal(self, orig_node):
-        queue = Queue(orig_node)
+        queue = MyQueue()
+        queue.enqueue(orig_node)
         visited = [orig_node]
         while queue:
             inode = queue.dequeue()
@@ -61,7 +63,8 @@ class Graph:
         return visited
 
     def bfsPathList(self, orig_vertex, dest_vertex):
-        queue = Queue((orig_vertex, [orig_vertex]))
+        queue = MyQueue()
+        queue.enqueue((orig_vertex, [orig_vertex]))
         while queue:
             (inode, path) = queue.dequeue()
             for jnode in self.adj_list[inode]:
@@ -78,7 +81,8 @@ class Graph:
             return None
 
     def dfsTraversal(self, orig_node):
-        stack = Stack(orig_node)
+        stack = MyStack()
+        stack.push(orig_node)
         visited = []
         while stack:
             inode = stack.pop()
@@ -90,10 +94,11 @@ class Graph:
         return visited
 
     def dfsPathList(self, orig_vertex, dest_vertex):
-        stack = Stack((orig_vertex, [orig_vertex]))
+        stack = MyStack()
+        stack.push((orig_vertex, [orig_vertex]))
         while stack:
             (inode, path) = stack.pop()
-            for jnode in self.adj_list[inode]:
+            for jnode in reversed(self.adj_list[inode]):
                 if jnode not in path:
                     if jnode == dest_vertex:
                         yield path + [jnode]
