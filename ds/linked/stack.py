@@ -23,13 +23,13 @@ SOFTWARE.
 """
 
 
-class MyStack:
+class CanonicalStack:
 
     def __init__(self, data = None):
         self.top = None
 
     def push(self, data):
-        temp = MyNode(data)
+        temp = Node(data)
         temp.next = self.top
         self.top = temp
 
@@ -54,7 +54,7 @@ class MyStack:
         return output
 
 
-class MyNode:
+class Node:
     def __init__(self, data):
         self.container = data
         self.next = None

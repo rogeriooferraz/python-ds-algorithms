@@ -26,13 +26,10 @@ SOFTWARE.
 from queue import LifoQueue
 
 
-class MyStack(LifoQueue):
+class CanonicalStack(LifoQueue):
 
     def __bool__(self):
         return self.empty() == False
 
-    def push(self, data):
-        self.put(data)
-
-    def pop(self):
-        return self.get()
+    push = LifoQueue.put
+    pop = LifoQueue.get

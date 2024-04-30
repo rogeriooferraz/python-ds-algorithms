@@ -26,10 +26,7 @@ SOFTWARE.
 from collections import deque
 
 
-class MyQueue(deque):
+class CanonicalQueue(deque):
 
-    def enqueue(self, data):
-        self.append(data)
-
-    def dequeue(self):
-        return self.popleft()
+    enqueue = deque.append
+    dequeue = deque.popleft

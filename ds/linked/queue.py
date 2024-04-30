@@ -23,7 +23,7 @@ SOFTWARE.
 """
 
 
-class MyQueue:
+class CanonicalQueue:
 
     def __init__(self):
         self.front = None
@@ -41,7 +41,7 @@ class MyQueue:
         return output
 
     def enqueue(self, data):
-        temp = MyNode(data)
+        temp = Node(data)
         if self.rear:
             self.rear.next = temp
         else:
@@ -60,7 +60,7 @@ class MyQueue:
         return self.front == None
 
 
-class MyNode:
+class Node:
     def __init__(self, data):
         self.container = data
         self.next = None

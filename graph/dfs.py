@@ -26,9 +26,9 @@ SOFTWARE.
 from graph import Graph
 
 
-def dfs_traversal(adj_list, orig_node):
+def dfs_traversal(adj_list, origin):
     visited = []
-    stack = [orig_node]
+    stack = [origin]
     while stack:
         inode = stack.pop()
         if(inode not in visited):
@@ -38,12 +38,12 @@ def dfs_traversal(adj_list, orig_node):
     return visited
 
 
-def dfs_path_list(adj_list, orig_vertex, dest_vertex):
-    stack = [(orig_vertex, [orig_vertex])]
+def dfs_path_list(adj_list, origin, destination):
+    stack = [(origin, [origin])]
     while stack:
         (inode, path) = stack.pop()
         for jnode in reversed([ adj_v for adj_v in adj_list[inode] if adj_v not in path ]):
-            if jnode == dest_vertex:
+            if jnode == destination:
                 yield path + [jnode]
             else:
                 stack.append((jnode, path + [jnode]))

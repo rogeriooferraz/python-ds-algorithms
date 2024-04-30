@@ -27,9 +27,9 @@ from collections import deque
 from graph import Graph
 
 
-def bfs_traversal(adj_list, orig_node):
-    visited = [orig_node]
-    queue = deque(orig_node)
+def bfs_traversal(adj_list, origin):
+    visited = [origin]
+    queue = deque(origin)
     while queue:
         inode = queue.popleft()
         for jnode in [ adj_v for adj_v in adj_list[inode] if adj_v not in visited ]:
@@ -38,20 +38,20 @@ def bfs_traversal(adj_list, orig_node):
     return visited
 
 
-def bfs_path_list(adj_list, orig_vertex, dest_vertex):
-    queue = deque([(orig_vertex, [orig_vertex])])
+def bfs_path_list(adj_list, origin, destination):
+    queue = deque([(origin, [origin])])
     while queue:
         (inode, path) = queue.popleft()
         for jnode in [ adj_v for adj_v in adj_list[inode] if adj_v not in path ]:
-            if jnode == dest_vertex:
+            if jnode == destination:
                 yield path + [jnode]
             else:
                 queue.append((jnode, path + [jnode]))
 
 
-def bfs_shortest_path(adj_list, orig_vertex, dest_vertex):
+def bfs_shortest_path(adj_list, origin, destination):
     try:
-        return next(bfs_path_list(adj_list, orig_vertex, dest_vertex))
+        return next(bfs_path_list(adj_list, origin, destination))
     except StopIteration:
         return None
 

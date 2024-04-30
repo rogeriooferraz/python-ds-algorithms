@@ -23,8 +23,8 @@ SOFTWARE.
 """
 
 
-from ds.linked.queue import MyQueue
-from ds.linked.stack import MyStack
+from ds.linked.queue import CanonicalQueue
+from ds.linked.stack import CanonicalStack
 
 
 class Graph:
@@ -50,10 +50,10 @@ class Graph:
         if vertex not in self.adj_list:
             self.adj_list[vertex] = []
 
-    def bfsTraversal(self, orig_node):
-        queue = MyQueue()
-        queue.enqueue(orig_node)
-        visited = [orig_node]
+    def bfsTraversal(self, origin):
+        queue = CanonicalQueue()
+        queue.enqueue(origin)
+        visited = [origin]
         while queue:
             inode = queue.dequeue()
             for jnode in self.adj_list[inode]:
@@ -62,27 +62,27 @@ class Graph:
                     visited.append(jnode)
         return visited
 
-    def bfsPathList(self, orig_vertex, dest_vertex):
-        queue = MyQueue()
-        queue.enqueue((orig_vertex, [orig_vertex]))
+    def bfsPathList(self, origin, destination):
+        queue = CanonicalQueue()
+        queue.enqueue((origin, [origin]))
         while queue:
             (inode, path) = queue.dequeue()
             for jnode in self.adj_list[inode]:
                 if jnode not in path:
-                    if jnode == dest_vertex:
+                    if jnode == destination:
                         yield path + [jnode]
                     else:
                         queue.enqueue((jnode, path + [jnode]))
 
-    def bfsShortestPath(self, orig_vertex, dest_vertex):
+    def bfsShortestPath(self, origin, destination):
         try:
-            return next(self.bfsPathList(orig_vertex, dest_vertex))
+            return next(self.bfsPathList(origin, destination))
         except StopIteration:
             return None
 
-    def dfsTraversal(self, orig_node):
-        stack = MyStack()
-        stack.push(orig_node)
+    def dfsTraversal(self, origin):
+        stack = CanonicalStack()
+        stack.push(origin)
         visited = []
         while stack:
             inode = stack.pop()
@@ -93,14 +93,14 @@ class Graph:
                     stack.push(jnode)
         return visited
 
-    def dfsPathList(self, orig_vertex, dest_vertex):
-        stack = MyStack()
-        stack.push((orig_vertex, [orig_vertex]))
+    def dfsPathList(self, origin, destination):
+        stack = CanonicalStack()
+        stack.push((origin, [origin]))
         while stack:
             (inode, path) = stack.pop()
             for jnode in reversed(self.adj_list[inode]):
                 if jnode not in path:
-                    if jnode == dest_vertex:
+                    if jnode == destination:
                         yield path + [jnode]
                     else:
                         stack.push((jnode, path + [jnode]))
